@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+
+    <style>
+        input:focus {
+            outline: none;
+        }
+        .valid {
+            border: 2px solid green;
+        }
+
+        .invalid {
+            border: 2px solid red;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Change Your Email Address</h1>
+    
+    <form id="change-email-form">
+        <label for="username">Username</label>
+        <input  type="text"  id="username"  placeholder="Username"  required pattern="[A-Za-z]+"  title="Username should only contain alphabetic characters" />
+        <p>Username should be only a series of alphabetic characters</p>
+
+        <label for="email">Email</label>
+        <input  type="email"  id="email"  placeholder="Email"  required pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}"  title="Email should only contain alphanumeric characters and @"/>
+        <p>Email should not include any special characters other than @</p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="../task2/index.html">Next</a>
+
+    <script>
+        document.getElementById('change-email-form').addEventListener('submit', function(event) {
+            const usernameField = document.getElementById('username');
+            const emailField = document.getElementById('email');
+        });
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (input.validity.valid) {
+                    input.classList.remove('invalid');
+                    input.classList.add('valid');
+                } else {
+                    input.classList.remove('valid');
+                    input.classList.add('invalid');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <style>
+        progress {
+            appearance: none;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: darkgoldenrod;
+        }
+
+        progress::-webkit-progress-value {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    progress: <progress min="0" max="100" id="progress_bar"></progress>
+    <span id="percentage">0%</span>
+
+
+    <form oninput="res.value=+num1.value + +num2.value">
+        <input type="number" id="num1" min="0" max="10" value="0"/>
+        <input type="range" id="num2" min="0" max="10" value="0"/>
+        <output name="res">0</output>
+    </form>
+
+    <div style="margin-top:30px">
+        <a href="../task3/index.html">Back</a> | <a href="../../lab2/task1/">Next</a>
+    </div>
+
+    <script>
+        var p = document.getElementById('progress_bar')
+        var pSpan = document.getElementById('percentage');
+        var inc = true;
+        setInterval(()=>{
+            if (inc) {
+                p.value += parseInt(Math.random() * 10);
+            }else{
+                p.value -= parseInt(Math.random() * 10);
+            }
+            
+            if(p.value == 100){
+                inc = false
+            }else if(p.value == 0){
+                inc = true
+            }
+            pSpan.textContent = p.value + "%";
+        },100)
+
+    </script>
+</body>
+
+</html>

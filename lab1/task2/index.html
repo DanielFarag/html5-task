@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+</head>
+<body>
+
+<form oninput="updateColor()">
+    <label for="red">Red:</label>
+    <input type="range" id="red" min="0" max="255" value="0">
+    <br>
+
+    <label for="green">Green:</label>
+    <input type="range" id="green" min="0" max="255" value="0">
+    <br>
+
+    <label for="blue">Blue:</label>
+    <input type="range" id="blue" min="0" max="255" value="0">
+</form>
+
+<h2 id="colorPreview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga cumque tempore, magnam, dolorem odio quae delectus nisi id laboriosam, nulla </h2>
+
+<a href="../task1/index.html">Back</a> | <a href="../task3/index.html">Next</a>
+
+
+<script>
+    function updateColor() {
+        const red = document.getElementById('red').value;
+        const green = document.getElementById('green').value;
+        const blue = document.getElementById('blue').value;
+
+        const colorPreview = document.getElementById('colorPreview');
+        colorPreview.style.color = `rgb(${red}, ${green}, ${blue})`;
+    }
+</script>
+
+</body>
+</html>

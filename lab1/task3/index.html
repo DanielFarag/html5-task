@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Audio Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        #audioPlayer {
+            display: none;
+        }
+        #image { 
+            width:250px;
+            height: 250px;
+        }
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .sliders {
+            margin-top: 10px;
+        }
+        .sliders label {
+            display: block;
+            margin-top: 10px;
+        }
+        .playlist {
+            margin-top: 20px;
+        }
+        .playlist ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        .playlist li:hover {
+            text-decoration: underline;
+        }
+        .controls button{
+            background-color: transparent;
+            border: unset;
+            outline: unset;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .container{
+            width: 100%;
+        }
+        #player{
+            width: 60%;
+            margin: 0 auto;
+            background: #7a71c1;
+            padding: 23px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="player">
+
+        <div id="image-container">
+            <img id="image" src="1.jpeg" alt="Music Cover">
+        </div>
+
+        <audio id="audioPlayer">
+            <source src="./1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="controls">
+            <button id="play" onclick="playAudio()"></button>
+            <button id="pause" onclick="pauseAudio()"></button>
+            <button id="stop" onclick="stopAudio()"></button> 
+            <button id="mute" onclick="muteAudio()"></button>
+        </div>
+
+        <div class="sliders">
+            <label for="progress">Progress:</label>
+            <input type="range" id="progress" min="0" step="1" value="0" oninput="seekAudio()">
+
+            <label for="volume">Volume:</label>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="1" oninput="setVolume()">
+
+            <label for="speed">Playback Speed:</label>
+            <input type="range" id="speed" min="0.5" max="2" step="0.1" value="1" oninput="setSpeed()">
+        </div>
+
+        <div class="playlist">
+            <h2>Playlist</h2>
+            <ul>
+                <li onclick="changeSong('1.mp3', '1.jpeg')">Song 1</li>
+                <li onclick="changeSong('2.mp3', '2.jpg')">Song 2</li>
+                <li onclick="changeSong('3.mp3', '3.jpeg')">Song 3</li>
+                <li onclick="changeSong('4.mp3', '4.jpg')">Song 4</li>
+            </ul>
+        </div>
+
+        <a href="../task2/index.html">Back</a> | <a href="../task4/index.html">Next</a>
+
+    </div>
+</div>
+
+<script>
+
+    window.addEventListener('load', () => {
+        document.getElementById("play").innerHTML = "&#9654;"
+
+
+        document.getElementById("pause").innerHTML = "&#9208;&#65039;"
+        document.getElementById("pause").style.display = "none";
+
+
+        document.getElementById("stop").innerHTML = "&#9209;&#65039;"
+        //  = "&#9209;&#65039;"
+        document.getElementById("mute").innerHTML = "📢"
+    });
+
+
+
+    const imageContainer = document.getElementById('image');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const progressSlider = document.getElementById('progress');
+    const volumeSlider = document.getElementById('volume');
+    const speedSlider = document.getElementById('speed');
+    volumeSlider.value = audioPlayer.volume;
+    speedSlider.value = audioPlayer.playbackRate;
+
+
+    function playAudio() {
+        audioPlayer.play();
+
+        document.getElementById("play").style.display = "none";
+        document.getElementById("pause").style.display = "inline-block";
+
+    }
+
+    function pauseAudio() {
+        audioPlayer.pause();
+
+
+        document.getElementById("play").style.display = "inline-block";
+        document.getElementById("pause").style.display = "none";
+
+    }
+
+    function stopAudio() {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+
+        document.getElementById("play").style.display = "inline-block";
+        document.getElementById("pause").style.display = "none";
+    }
+
+    function muteAudio() {
+        if(audioPlayer.muted){
+            document.getElementById("mute").innerHTML = "📢"
+        }else{
+            document.getElementById("mute").innerHTML = "&#128263;"
+        }
+
+        audioPlayer.muted = !audioPlayer.muted;
+    }
+
+    function setVolume() {
+        audioPlayer.muted = false;
+
+        audioPlayer.volume = volumeSlider.value;
+
+        document.getElementById("mute").innerHTML = "📢"
+    }
+
+    function setSpeed() {
+        audioPlayer.playbackRate = speedSlider.value;
+    }
+
+    function changeSong(song, image) {
+        audioPlayer.src = song;
+        imageContainer.src = image
+        volumeSlider.value = audioPlayer.volume;
+        speedSlider.value = audioPlayer.playbackRate;
+        playAudio()
+    }
+
+    function seekAudio() {
+        audioPlayer.currentTime = progressSlider.value;
+    }
+
+    audioPlayer.addEventListener('timeupdate', (e) => {
+        progressSlider.max = e.target.duration || 0;
+        progressSlider.value = e.target.currentTime;
+    });
+
+
+</script>
+
+</body>
+</html>

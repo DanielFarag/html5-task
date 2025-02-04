@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="color" id="color" value="#4CAF50">
+    <button id="draw">Draw</button><br/>
+
+    <canvas style="background-color: rgb(0, 0, 0);" width="600px" height="600px"></canvas>
+    <br/>
+    <a href="../task1/index.html">Back</a> | <a href="../task3/index.html">Next</a>
+
+
+    <script>
+
+        var c =document.getElementsByTagName('canvas')[0];
+        var ctx = c.getContext('2d');
+
+        var color=document.getElementById('color');
+        var draw=document.getElementById('draw');
+
+        draw.addEventListener('click',drawCircles);
+
+        function drawCircles(){
+
+            ctx.clearRect(0,0,c.width,c.height);
+
+            for (let index = 0; index < 100; index++) {
+                var w=Math.floor(Math.random()*c.width);
+                var h=Math.floor(Math.random()*c.height);
+                ctx.strokeStyle=color.value;
+
+                ctx.arc(w,h,30,0,Math.PI*2);
+                ctx.stroke();
+                ctx.beginPath();
+            }
+        }
+
+
+        drawCircles()
+    </script>
+</body>
+</html>

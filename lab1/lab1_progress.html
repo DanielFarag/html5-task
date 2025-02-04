@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        progress {
+            appearance: none;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: darkgoldenrod;
+        }
+
+        progress::-webkit-progress-value {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    progress: <progress min="0" max="100" value=""></progress>
+    <span id="percentage">0%</span>
+    <script>
+        var p = document.getElementsByTagName('progress')[0];
+        var percentageText = document.getElementById('percentage');
+        var count = 0;
+        function countProgress() {
+            if (count <= 100) {
+                p.value = count;
+                percentageText.textContent = count + "%";
+                count += 10;
+            } else {
+                clearInterval(interval);
+            }
+        }
+        countProgress();
+        var interval = setInterval(countProgress, 200);
+    </script>
+</body>
+
+</html>

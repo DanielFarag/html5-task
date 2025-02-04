@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            position: relative;
+            background: url(./grass.png);
+            background-repeat: no-repeat;
+            background-position: 10px 459px;
+            display: inline-block;
+            min-height: 650px;
+            min-width: 90vw;
+        }
+
+        #player1{
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            bottom: 50px;
+        }
+
+        #player2{
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            right: 100px;
+            bottom: 60px;
+        }
+
+        #ball{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            bottom: 110px;
+            left: 190px;
+            animation: rotate 1s linear infinite alternate;
+        }
+
+        @keyframes rotate {
+            0%{
+                left: 190px;
+                bottom: 110px;
+                transform: rotate(0deg);
+            }
+            15%{
+                left: 190px;
+                bottom: 110px;
+                transform: rotate(160deg);
+            }
+            25%{
+                left: 300px;
+                bottom: 150px;
+                transform: rotate(360deg);
+            }
+            50%{
+                left: 800px;
+                bottom: 200px;
+                transform: rotate(360deg);
+            }
+            75%{
+                left: 1200px;
+                bottom: 150px;
+                transform: rotate(360deg);
+            }
+            85%{
+                left: 1450px;
+                bottom: 70px;
+                transform: rotate(360deg);
+            }
+            100%{
+                left: 1450px;
+                bottom: 70px;
+                transform: rotate(500deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="player1" src="./player1.png" alt="">
+        <img id="player2" src="./player2.png" alt="">
+        <img id="ball" src="./ball.png" alt="">
+    </div>
+    <div style="position: absolute; right: 50%">
+        <a href="../task1/index.html">Back</a> | <a href="../task3/index.html">Next</a>
+    </div>
+</body>
+</html>
